@@ -1,24 +1,36 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "Home" */ "@/components/shared/app/Login.vue")
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: "/home",
+    name: "Home",
+    component: () => import(/* webpackChunkName: "Home" */ "@/views/Home.vue"),
   },
+  
+  {
+    path: "/profile",
+    name: "Profile",
+    component: () => import(/* webpackChunkName: "Profile" */ "@/views/Profile.vue")
+    // Esta ruta debe de recibir un parametro que indique de quien es el perfil que se va a renderizar
+  },
+  {
+    path: '/privacy',
+    name: 'Privacy',
+    component: () => import(/* webpackChunkName: "Privacy" */ "@/views/Privacy.vue")
+  },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: () => import(/* webpackChunkName: "Terms" */ "@/views/Terms.vue")
+  }
 ];
 
 const router = new VueRouter({
